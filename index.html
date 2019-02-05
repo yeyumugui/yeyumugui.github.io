@@ -126,7 +126,7 @@
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/工作中的搜索/">
       <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="夜雨暮归">
+        <meta itemprop="name" content="StormLuo">
         <meta itemprop="description" content="">
         <meta itemprop="image" content="/images/avatar.png">
       </span>
@@ -204,7 +204,7 @@
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/koa2 in centos/">
       <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="夜雨暮归">
+        <meta itemprop="name" content="StormLuo">
         <meta itemprop="description" content="">
         <meta itemprop="image" content="/images/avatar.png">
       </span>
@@ -229,27 +229,24 @@
     <main class="post-main" itemprop="articleBody">
       
       <p>某日在segmentfault上看到一篇<a href="https://segmentfault.com/a/1190000017488589?_ea=5980047" target="_blank" rel="noopener"><br>Koa2 + Mongo + 爬虫 搭建 小说微信小程序（本地开发篇）</a>，刚好在双十一买了一台阿里云主机，寻思着就在里头把这node给部署了吧。说干就干，以此篇来记录一下部署遇到的坑吧。</p>
-<p>##一、服务器没有域名备案，无法直接访问ip</p>
-<p>刚开始时，直接在服务器上部署nginx，在命令行中运行<code>curl http://127.0.0.1</code>可以显示nginx的初始页面，但浏览器上无法访问<code>http://ip</code>,各种搜，无果。最终在此找到<a href="https://blog.csdn.net/LJFPHP/article/details/78670459" target="_blank" rel="noopener">nginx公网IP无法访问浏览器</a></p>
-<p>###解决方式，阿里云服务控制台中安全组开放80端口</p>
-<p>##二、nginx代理分发<br>云服务器中不想开放多余端口，因此使用nginx实现代理分发，只在此记录一下nginx代理配置</p>
+<h2 id="一、服务器没有域名备案，无法直接访问ip"><a href="#一、服务器没有域名备案，无法直接访问ip" class="headerlink" title="一、服务器没有域名备案，无法直接访问ip"></a>一、服务器没有域名备案，无法直接访问ip</h2><p>刚开始时，直接在服务器上部署nginx，在命令行中运行<code>curl http://127.0.0.1</code>可以显示nginx的初始页面，但浏览器上无法访问<code>http://ip</code>,各种搜，无果。最终在此找到<a href="https://blog.csdn.net/LJFPHP/article/details/78670459" target="_blank" rel="noopener">nginx公网IP无法访问浏览器</a></p>
+<h3 id="解决方式，阿里云服务控制台中安全组开放80端口"><a href="#解决方式，阿里云服务控制台中安全组开放80端口" class="headerlink" title="解决方式，阿里云服务控制台中安全组开放80端口"></a>解决方式，阿里云服务控制台中安全组开放80端口</h3><h2 id="二、nginx代理分发"><a href="#二、nginx代理分发" class="headerlink" title="二、nginx代理分发"></a>二、nginx代理分发</h2><p>云服务器中不想开放多余端口，因此使用nginx实现代理分发，只在此记录一下nginx代理配置</p>
 <figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 80;</span><br><span class="line">	server_name XXX;</span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass http://xx.xx.xx.xx:xx</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>##三、Mongodb安装<br>安装mongodb使用<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="noopener">官网</a>提供的教程，修改官方源为阿里源</p>
+<h2 id="三、Mongodb安装"><a href="#三、Mongodb安装" class="headerlink" title="三、Mongodb安装"></a>三、Mongodb安装</h2><p>安装mongodb使用<a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/" target="_blank" rel="noopener">官网</a>提供的教程，修改官方源为阿里源</p>
 <figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mongodb-org-4.0]</span><br><span class="line">name=MongoDB Repository</span><br><span class="line">baseurl=https://mirrors.aliyun.com/mongodb/yum/redhat/$releasever/mongodb-org/4.0/x86_64/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc</span><br></pre></td></tr></table></figure>
 <p>安装</p>
 <figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y mongodb-org</span><br></pre></td></tr></table></figure>
 <p>开启、停止、重启Mongodb</p>
 <figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 开启</span><br><span class="line">sudo service mongod start</span><br><span class="line"></span><br><span class="line">// 停止</span><br><span class="line">sudo service mongod stop</span><br><span class="line"></span><br><span class="line">// 重启</span><br><span class="line">sudo service mongod restart</span><br></pre></td></tr></table></figure>
-<p>##四、node服务部署<br>node在开发阶段都是使用<code>npm run start</code>来开启服务，输出log，但在服务器中不能这样做，于是改用pm2执行。</p>
+<h2 id="四、node服务部署"><a href="#四、node服务部署" class="headerlink" title="四、node服务部署"></a>四、node服务部署</h2><p>node在开发阶段都是使用<code>npm run start</code>来开启服务，输出log，但在服务器中不能这样做，于是改用pm2执行。</p>
 <figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pm2 start xxx.js</span><br><span class="line"></span><br><span class="line">// 显示log</span><br><span class="line">pm2 log</span><br><span class="line"></span><br><span class="line">// pm2运行的程序</span><br><span class="line">pm2 list</span><br><span class="line"></span><br><span class="line">// pm2停止某个</span><br><span class="line">pm2 stop xxx</span><br></pre></td></tr></table></figure>
-<p>##五、使用puppeteer在centos7中无法启动<br>pm2部署后，小程序发送请求，但在运行爬虫时无反应，查看log发现以下错误</p>
+<h2 id="五、使用puppeteer在centos7中无法启动"><a href="#五、使用puppeteer在centos7中无法启动" class="headerlink" title="五、使用puppeteer在centos7中无法启动"></a>五、使用puppeteer在centos7中无法启动</h2><p>pm2部署后，小程序发送请求，但在运行爬虫时无反应，查看log发现以下错误</p>
 <figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules/puppeteer/.local-chromium/linux-496140/chrome-linux/chrome: error while loading shared libraries: libpangocairo-1.0.so.0: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
 <p>原来puppeteer虽然帮你下了一个Chromium，但并没有帮你把依赖都装好。</p>
 <p>参考<a href="https://segmentfault.com/a/1190000011382062" target="_blank" rel="noopener">centos安装使用puppeteer和headless chrome</a>添加centos版本对应的依赖库解决。</p>
 <p>官方给的是Ubuntu版本的各个so包的apt-get安装方式，centos版本居然没有放！</p>
 <figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#依赖库</span><br><span class="line">yum install pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 -y</span><br><span class="line"></span><br><span class="line">#字体</span><br><span class="line">yum install ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc -y</span><br></pre></td></tr></table></figure>
-<p>###到此，爬虫运行成功。程序部署完毕</p>
-
+<h3 id="到此，爬虫运行成功。程序部署完毕"><a href="#到此，爬虫运行成功。程序部署完毕" class="headerlink" title="到此，爬虫运行成功。程序部署完毕"></a>到此，爬虫运行成功。程序部署完毕</h3>
       
     </main>
     <footer class="post-footer">
@@ -261,7 +258,7 @@
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/hello-world/">
       <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="夜雨暮归">
+        <meta itemprop="name" content="StormLuo">
         <meta itemprop="description" content="">
         <meta itemprop="image" content="/images/avatar.png">
       </span>
@@ -322,9 +319,9 @@
   
 <div class="info sidebar-item" id="info">
   
-  <img class="author-avatar" src="/images/avatar.png" alt="夜雨暮归">
+  <img class="author-avatar" src="/images/avatar.png" alt="StormLuo">
   
-  <h1 class="author-name">夜雨暮归</h1>
+  <h1 class="author-name">StormLuo</h1>
   <h2 class="author-description"></h2>
   <div class="site-count">
     
@@ -393,7 +390,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">夜雨暮归</span><span class="year"><i class="far fa-copyright"></i>2019</span>
+          <span class="author">StormLuo</span><span class="year"><i class="far fa-copyright"></i>2019</span>
         </div>
         
         <div class="busuanzi">
