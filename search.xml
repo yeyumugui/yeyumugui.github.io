@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>VS Code配置autoprefixer</title>
+      <link href="/2020/04/29/VS-Code%E9%85%8D%E7%BD%AEautoprefixer/"/>
+      <url>/2020/04/29/VS-Code%E9%85%8D%E7%BD%AEautoprefixer/</url>
+      
+        <content type="html"><![CDATA[<p>随着vs code版本更新，autoprefixer的配置项也在发生变化，但现在一搜索autoprefixer的在vscode上的配置都还是很久以前的配置，如果直接在vscode上配置如下的设置</p><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&quot;autoprefixer.browsers&quot;: [<br>&quot;last 3 versions&quot;,<br>// &quot;ie &gt;= 10&quot;,<br>// &quot;ie_mob &gt;= 10&quot;,<br>// &quot;ff &gt;= 30&quot;,<br>&quot;chrome &gt;= 30&quot;,<br>&quot;safari &gt;= 6&quot;,<br>&quot;ios &gt;= 6&quot;,<br>&quot;android &gt;= 4.4&quot;<br>],<br></code></pre></td></tr></table></figure><p>在最新的vscode中鼠标移上去会出现“未知的配置设置”提示，是因为 autoprefixer 的配置项已经修改为 “autoprefixer.options”: {} ,因此，最新的配置应该为以下的配置</p><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&quot;autoprefixer.options&quot;: &#123;<br>&quot;browsers&quot;: [<br>&quot;last 3 versions&quot;,<br>// &quot;ie &gt;= 10&quot;,<br>// &quot;ie_mob &gt;= 10&quot;,<br>// &quot;ff &gt;= 30&quot;,<br>&quot;chrome &gt;= 30&quot;,<br>&quot;safari &gt;= 6&quot;,<br>&quot;ios &gt;= 6&quot;,<br>&quot;android &gt;= 4.4&quot;<br>]<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>工作中的搜索</title>
       <link href="/2019/02/02/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2/"/>
       <url>/2019/02/02/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2/</url>

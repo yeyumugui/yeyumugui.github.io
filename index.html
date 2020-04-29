@@ -124,6 +124,46 @@
   
   <article class="article post card" itemscope="" itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/29/VS-Code配置autoprefixer/">
+      <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="StormLuo">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="StormLuo">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2020/04/29/VS-Code配置autoprefixer/" itemprop="url">VS Code配置autoprefixer</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-04-29T16:48:37+08:00">2020-04-29 16:48:37</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>随着vs code版本更新，autoprefixer的配置项也在发生变化，但现在一搜索autoprefixer的在vscode上的配置都还是很久以前的配置，如果直接在vscode上配置如下的设置</p>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&quot;autoprefixer.browsers&quot;: [<br>	&quot;last 3 versions&quot;,<br>	// &quot;ie &gt;= 10&quot;,<br>	// &quot;ie_mob &gt;= 10&quot;,<br>	// &quot;ff &gt;= 30&quot;,<br>	&quot;chrome &gt;= 30&quot;,<br>	&quot;safari &gt;= 6&quot;,<br>	&quot;ios &gt;= 6&quot;,<br>	&quot;android &gt;= 4.4&quot;<br>],<br></code></pre></td></tr></table></figure>
+<p>在最新的vscode中鼠标移上去会出现“未知的配置设置”提示，是因为 autoprefixer 的配置项已经修改为 “autoprefixer.options”: {} ,因此，最新的配置应该为以下的配置</p>
+<figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&quot;autoprefixer.options&quot;: &#123;<br>	&quot;browsers&quot;: [<br>		&quot;last 3 versions&quot;,<br>		// &quot;ie &gt;= 10&quot;,<br>		// &quot;ie_mob &gt;= 10&quot;,<br>		// &quot;ff &gt;= 30&quot;,<br>		&quot;chrome &gt;= 30&quot;,<br>		&quot;safari &gt;= 6&quot;,<br>		&quot;ios &gt;= 6&quot;,<br>		&quot;android &gt;= 4.4&quot;<br>	]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope="" itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/02/工作中的搜索/">
       <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
         <meta itemprop="name" content="StormLuo">
@@ -327,7 +367,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">3</a></div>
+      <div><a href="/archives/">4</a></div>
     </div>
     
     
@@ -390,7 +430,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">StormLuo</span><span class="year"><i class="far fa-copyright"></i>2019</span>
+          <span class="author">StormLuo</span><span class="year"><i class="far fa-copyright"></i>2020</span>
         </div>
         
         <div class="busuanzi">
